@@ -1,0 +1,23 @@
+[project]
+name = "openchat-tui"
+version = "0.1.0"
+description = "Terminal ChatGPT-style client for NVIDIA NIM models"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "textual>=8.0",
+    "httpx>=0.27",
+]
+
+[project.scripts]
+openchat = "app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["app.py", "app.tcss", "config.py", "nim_client.py", "storage.py"]
+# Editable installs point straight at this folder, so edits to config.py
+# (e.g. the API key) take effect without reinstalling.
+dev-mode-dirs = ["."]

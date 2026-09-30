@@ -1,0 +1,126 @@
+Screen {
+    background: $background;
+}
+
+#sidebar {
+    width: 32;
+    border-right: solid $panel-lighten-2;
+    padding: 0 1;
+}
+
+#new-chat {
+    width: 100%;
+    margin: 1 0;
+}
+
+#history-label {
+    color: $text-muted;
+    text-style: bold;
+    padding: 0 1;
+}
+
+#history {
+    height: 1fr;
+    background: transparent;
+}
+
+HistoryItem {
+    padding: 0 1;
+    height: 2;
+}
+
+HistoryItem .date {
+    color: $text-muted;
+}
+
+#main {
+    width: 1fr;
+}
+
+#messages {
+    height: 1fr;
+    padding: 0 2;
+}
+
+.empty {
+    color: $text-muted;
+    margin: 2 0;
+    width: 100%;
+    text-align: center;
+}
+
+UserBubble {
+    border: round $primary;
+    border-title-color: $primary;
+    padding: 0 1;
+    margin: 1 0 0 12;
+    width: 1fr;
+    height: auto;
+}
+
+AssistantBubble {
+    border: round $panel-lighten-3;
+    border-title-color: $text-muted;
+    padding: 0 1;
+    margin: 1 12 0 0;
+    height: auto;
+}
+
+AssistantBubble .reasoning {
+    color: #b39ddb;
+    text-style: italic;
+    border-left: thick #7e57c2;
+    padding: 0 1;
+    margin: 1 0 0 0;
+    height: auto;
+}
+
+AssistantBubble Markdown {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+#status {
+    height: 1;
+    padding: 0 2;
+    color: $text-muted;
+}
+
+#composer {
+    height: auto;
+    min-height: 3;
+    max-height: 12;
+    margin: 0 1;
+    border: round $accent;
+}
+
+ModelPicker, ConfirmDelete {
+    align: center middle;
+}
+
+.dialog {
+    width: 50;
+    height: auto;
+    border: thick $accent;
+    background: $surface;
+    padding: 1 2;
+}
+
+.dialog-title {
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.dialog OptionList {
+    height: auto;
+}
+
+.buttons {
+    height: auto;
+    align: center middle;
+}
+
+.buttons Button {
+    margin: 0 1;
+}
