@@ -6,17 +6,17 @@ Terminal version of the openchat iOS app: a ChatGPT-style chat with **NVIDIA NIM
 
 Dependencies are managed with [uv](https://docs.astral.sh/uv/) (`pyproject.toml` + `uv.lock`).
 
-Put your API key in `config.py`:
+Put your API key in a new file `local_config.py` next to `config.py`:
 
 ```python
 NVIDIA_API_KEY = "nvapi-..."
 ```
 
-(If it's left as `""`, the `NVIDIA_API_KEY` environment variable is used instead.)
+`local_config.py` is gitignored, so the key is never committed. (If the file is missing or the key is `""`, the `NVIDIA_API_KEY` environment variable is used instead.)
 
 ## Run
 
-Install once as a global command (editable, so edits to `config.py` apply immediately):
+Install once as a global command (editable, so edits to `config.py` and `local_config.py` apply immediately):
 
 ```bash
 cd openchat_tui
@@ -58,7 +58,8 @@ Click a chat in **History** (or use the arrow keys and press Enter) to open it.
 
 | File | Role |
 |------|------|
-| `config.py` | API key, models, request params, data paths |
+| `config.py` | Models, request params, data paths (loads the key from `local_config.py`) |
+| `local_config.py` | Your API key (gitignored, you create it) |
 | `nim_client.py` | Async SSE streaming client (port of `NVIDIAChatClient.swift`) |
 | `storage.py` | `ChatMessage` / `ChatThread`, JSON persistence, token estimate |
 | `app.py` | Textual UI |
@@ -66,7 +67,7 @@ Click a chat in **History** (or use the arrow keys and press Enter) to open it.
 
 ## Behavior (same as iOS)
 
-- Models: Nemotron 3 Ultra 550B A55B (default) and Nemotron 3 Super 120B A12B, picked with `Ctrl+O`. (Step 3.7 Flash and DeepSeek V4 Flash from the iOS app are omitted; NVIDIA has retired them.)
+- Models: Nemotron 3 Ultra 550B A55B (default) and Nemotron 3.5 Super VL 120B A12B (text input only), picked with `Ctrl+O`. (Step 3.7 Flash, DeepSeek V4 Flash and Nemotron 3 Super 120B A12B from the iOS app are omitted; NVIDIA has retired them.)
 - `temperature=1`, `top_p=0.95`, `max_tokens=16384`, `stream=true`.
 - Thinking off: sends the "instant mode" system prompt plus `chat_template_kwargs: {"enable_thinking": false}`. If the API returns HTTP 422, the request is retried once without `chat_template_kwargs`.
 - Chat titles come from the first user message (up to 36 characters).

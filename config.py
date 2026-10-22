@@ -6,9 +6,13 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-# Paste your NVIDIA NIM API key here (local use only — never commit a real key).
-# If left empty, the NVIDIA_API_KEY environment variable is used instead.
-NVIDIA_API_KEY = ""
+# Put your NVIDIA NIM API key in local_config.py (gitignored) as
+# NVIDIA_API_KEY = "nvapi-...". If that file is missing or the key is empty,
+# the NVIDIA_API_KEY environment variable is used instead.
+try:
+    from local_config import NVIDIA_API_KEY
+except ImportError:
+    NVIDIA_API_KEY = "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"
 
 BASE_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 
@@ -38,7 +42,8 @@ class ChatModel:
 
 MODELS: list[ChatModel] = [
     ChatModel("nvidia/nemotron-3-ultra-550b-a55b", "Nemotron 3 Ultra 550B A55B"),
-    ChatModel("nvidia/nemotron-3-super-120b-a12b", "Nemotron 3 Super 120B A12B"),]
+    ChatModel("nvidia/nemotron-3.5-super-vl-120b-a12b", "Nemotron 3.5 Super VL 120B A12B"),
+]
 DEFAULT_MODEL = MODELS[0]
 
 
