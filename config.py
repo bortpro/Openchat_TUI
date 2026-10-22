@@ -12,7 +12,7 @@ from pathlib import Path
 try:
     from local_config import NVIDIA_API_KEY
 except ImportError:
-    NVIDIA_API_KEY = "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"
+    NVIDIA_API_KEY = ""
 
 BASE_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 
